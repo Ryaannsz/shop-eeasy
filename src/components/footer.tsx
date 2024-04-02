@@ -7,7 +7,7 @@ import { GridContainer } from "./grid"
 export function Footer(){
     return(
        
-            <footer className="absolute bottom-0 mt-auto w-full h-40 bg-blue-hover flex flex-col items-center justify-center">
+            <footer className="relative bottom-0 mt-auto w-full h-40 bg-blue-hover flex flex-col items-center justify-center">
             
             <GridContainer className="flex items-center justify-center">
             <Image 
