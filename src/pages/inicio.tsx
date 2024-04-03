@@ -10,6 +10,7 @@ import  headerDois from "/public/headerDois.svg"
 import  headerTres from "/public/headerTres.svg"
 import  headerQuatro from "/public/headerQuatro.svg"
 import { GridContainer } from "@/components/grid";
+import { Card } from "../components/cardproduct"
 
 
 
@@ -29,8 +30,8 @@ export default function Inicio(){
         }
     ]
 
-    
-
+    const cardArray = Array.from({ length: 4 }, (_, index) => index + 1);
+    //CARROSEL IMAGENS
     const [currentIndex, setCurrentIndex] = useState(0)
 
     const goToSlide = (slideIndex: React.SetStateAction<number>) =>{
@@ -48,6 +49,8 @@ export default function Inicio(){
         const newIndex = isLast ? 0 : currentIndex + 1;
         setCurrentIndex(newIndex)
     } 
+    //CARROSEL IMAGENS
+
 
     return(
      <div className="flex flex-col min-h-screen">
@@ -74,8 +77,25 @@ export default function Inicio(){
                     </div>
 
                      </div>
-              </GridContainer>
-             
+
+                    <section className="px-20 mt-6">
+                        <div className="">
+                          
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                
+                            {/*AQUI COLOCAR TIPO BANCODEDADOS.LENGHT*/[0,1,2,3,4].map((index)=>(
+                                <Card key={index} cardIndex={index}/>
+                            ))}
+
+                            </div>
+                        
+
+                        </div>
+
+
+                    </section>
+                    <br></br>
+              </GridContainer>  
             <Footer />
         </div>
         
