@@ -12,7 +12,7 @@ export function Header(){
             <GridContainer className="flex items-center justify-between">
                
             <Image 
-                src={Logo}
+                src="/logo.svg"
                 alt="logo"
                 width={125}
                 height={117}
