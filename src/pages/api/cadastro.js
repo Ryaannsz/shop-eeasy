@@ -2,16 +2,15 @@
 import dbconnection from "../../db"
 
 
-export default async function postLogin(req, res){
+export default async function postCadastro(req, res){
 
     if(req.method == 'POST'){
         const {cadastroUsername, cadastroSenha, email, cep, endereco, bairro} = req.body
-
-        const verificarCadastro = await dbconnection.execute(`SELECT username FROM users WHERE username='${cadastroUsername}'`)
-        console.log("Aqui os registros")
-        console.log(verificarCadastro)
-        console.log(verificarCadastro.length)
-        if(verificarCadastro.length==1){
+       
+        const verificarCadastro = await dbconnection.execute(`SELECT username FROM users WHERE username=?`, [cadastroUsername])
+                 
+        if(!(verificarCadastro[0][0]==null)){
+            console.log("Usuário já cadastrado!")
             return res.status(500).json({success: false, message: "Usuário já cadastrado!"})  
         }
 
@@ -34,5 +33,4 @@ export default async function postLogin(req, res){
     }else{
         return res.status(405).json({ success: false, message: "Método HTTP não permitido." });
     }
-
 }
