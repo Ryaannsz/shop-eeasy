@@ -28,8 +28,8 @@ export default function Login(){
       };
 
    
-    const postCadastro = async () => {
-       
+    const postCadastro = async (e) => {
+       e.preventDefault()
             const response = await fetch('api/cadastro',{
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -38,7 +38,8 @@ export default function Login(){
             
             if(response.ok){
                 console.log("Requisição bem sucedida")
-               
+                alert("Cadastro realizado com sucesso!")
+                window.location.reload()
             }else{
                 console.log("Erro na requisição "+response.statusText)
             }
@@ -58,6 +59,24 @@ export default function Login(){
       }else{
         console.log("Deu errado")
       }
+    }
+
+    const complementoEndereco = async (e) =>{
+      e.preventDefault()
+      fetch('https://viacep.com.br/ws/'+cep+'/json')
+      .then(response=>{
+        if(!response.ok){
+          throw new Error('Erro ao identificar o cep')
+        }
+        return response.json()
+      }).then(data =>{
+        setEndereco(data.logradouro)
+        setBairro(data.bairro)
+      }).catch(error=>{
+        console.error('Erro: ', error)
+        alert("CEP não encontrado")
+      })
+        
     }
 
         return (
@@ -101,6 +120,7 @@ export default function Login(){
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">CEP</label>
                 <input value={cep} onChange={(e) => setCep(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text"/>
+                <button onClick={complementoEndereco} className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" type="submit">Encontrar CEP</button>
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" >Endereco</label>
