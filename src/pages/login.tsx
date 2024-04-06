@@ -4,6 +4,9 @@ import { Footer } from "../components/footer"
 import { GridContainer } from "@/components/grid";
 import React, { useState } from 'react';
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export default function Login(){
@@ -56,12 +59,16 @@ export default function Login(){
       if(response.ok){
         console.log("Requisição bem sucedida")
         router.push('/inicio')
+        
       }else{
-        console.log("Deu errado")
+        toast.error("Usuário não encontrado!",{
+          theme: 'colored'
+        })
       }
     }
 
     const complementoEndereco = async (e) =>{
+      
       e.preventDefault()
       fetch('https://viacep.com.br/ws/'+cep+'/json')
       .then(response=>{
@@ -72,15 +79,22 @@ export default function Login(){
       }).then(data =>{
         setEndereco(data.logradouro)
         setBairro(data.bairro)
+        console.log("oIIi")
+        toast.success("CEP localizado com sucesso!", {
+          theme: 'colored'
+        })
       }).catch(error=>{
         console.error('Erro: ', error)
-        alert("CEP não encontrado")
+        toast.error("O CEP informado não foi localizado!", {
+          theme: 'colored'
+        })
       })
         
     }
 
         return (
             <div className="flex flex-col min-h-screen">
+              <ToastContainer />
                 <Header />
                     <GridContainer>
                       <div className="flex h-screen bg-gray-100">
