@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Cookies from 'js-cookie';
 
 
 export default function Login(){
@@ -31,7 +31,7 @@ export default function Login(){
       };
 
    
-    const postCadastro = async (e) => {
+    const postCadastro = async (e: { preventDefault: () => void; }) => {
        e.preventDefault()
             const response = await fetch('api/cadastro',{
                 method: 'POST',
@@ -41,14 +41,20 @@ export default function Login(){
             
             if(response.ok){
                 console.log("Requisição bem sucedida")
-                alert("Cadastro realizado com sucesso!")
-                window.location.reload()
+                toast.success("Cadastro realizado com sucesso!", {
+                  theme: 'colored',
+                  autoClose: 2000
+                })
+                setTimeout(()=>{
+                  window.location.reload()
+                },2000)
+          
             }else{
                 console.log("Erro na requisição "+response.statusText)
             }
     }
 
-    const postLogin = async (e) => {
+    const postLogin = async (e: { preventDefault: () => void; }) => {
       e.preventDefault()
       const response = await fetch('api/login',{
         method: 'POST',
@@ -57,8 +63,21 @@ export default function Login(){
       })
 
       if(response.ok){
+
+        const data = await response.json()
+        const { token } = data
+
+        Cookies.set('token', token,{expires: 1})
+
         console.log("Requisição bem sucedida")
-        router.push('/inicio')
+        toast.success("Cadastro realizado com sucesso!", {
+          theme: 'colored',
+          autoClose: 2000
+        })
+        setTimeout(()=>{
+          router.push('/inicio')
+        },2000)
+        
         
       }else{
         toast.error("Usuário não encontrado!",{
@@ -67,7 +86,7 @@ export default function Login(){
       }
     }
 
-    const complementoEndereco = async (e) =>{
+    const complementoEndereco = async (e: { preventDefault: () => void; }) =>{
       
       e.preventDefault()
       fetch('https://viacep.com.br/ws/'+cep+'/json')
@@ -81,12 +100,14 @@ export default function Login(){
         setBairro(data.bairro)
         console.log("oIIi")
         toast.success("CEP localizado com sucesso!", {
-          theme: 'colored'
+          theme: 'colored',
+          autoClose: 2000
         })
       }).catch(error=>{
         console.error('Erro: ', error)
         toast.error("O CEP informado não foi localizado!", {
-          theme: 'colored'
+          theme: 'colored',
+          autoClose: 2000
         })
       })
         
