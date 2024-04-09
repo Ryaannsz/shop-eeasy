@@ -15,6 +15,22 @@ import { Card } from "../components/cardproduct"
 
 
 export default function Inicio(){
+
+
+    //fetch
+    const getProdutos = async () =>{
+        await fetch('/api/getProdutos')
+        .then(response =>{
+          if(!response.ok){
+            throw new Error("Erro ao selecionar produtos para o front!")
+          }
+          return response.json()
+        }).then(data =>{
+          const produto = data
+        })
+      }
+
+
     const imgSlides = [
         {
             img: headerInicio

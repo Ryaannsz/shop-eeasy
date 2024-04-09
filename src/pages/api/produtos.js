@@ -1,7 +1,7 @@
 import dbconnection from "../../db";
 
 
-export default async function handler(req, res){
+export default async function produtos(req, res){
     //const srcImg = '/card1.svg'
    
 

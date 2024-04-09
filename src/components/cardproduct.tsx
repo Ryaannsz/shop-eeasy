@@ -8,6 +8,12 @@ import card5 from "/public/card5.svg"
 
 export function Card({cardIndex}){
 
+ 
+
+  
+
+
+
     const arrayImg=[card1, card2,card3,card4,card5]
 
     const imgIndex = cardIndex < arrayImg.length ? cardIndex:0
