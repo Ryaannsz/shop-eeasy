@@ -2,7 +2,7 @@ import "../app/globals.css";
 import { Header } from "../components/header"
 import { Footer } from "../components/footer"
 import Image from "next/image"
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { GoArrowRight, GoArrowLeft } from "react-icons/go";
 import { RxDotFilled } from "react-icons/rx";
 import  headerInicio from "/public/headerInicio.svg"
@@ -16,19 +16,28 @@ import { Card } from "../components/cardproduct"
 
 export default function Inicio(){
 
-
+    const [produto, setProduto]=useState([])
     //fetch
-    const getProdutos = async () =>{
-        await fetch('/api/getProdutos')
-        .then(response =>{
-          if(!response.ok){
-            throw new Error("Erro ao selecionar produtos para o front!")
+
+    useEffect(()=>{
+
+        const getProdutos = async () =>{
+            try {
+                const response = await fetch('/api/getProdutos')
+                  if(!response.ok){
+                    throw new Error("Erro ao selecionar produtos para o front!")
+                  }
+                  const data = await response.json()
+                  setProduto(data)
+                 
+            } catch (error) {
+                console.error("Erro ao buscar produtos: "+ error);
+            }
           }
-          return response.json()
-        }).then(data =>{
-          const produto = data
-        })
-      }
+
+          getProdutos()
+    },[])
+    
 
 
     const imgSlides = [
@@ -99,8 +108,8 @@ export default function Inicio(){
                           
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 
-                            {/*AQUI COLOCAR TIPO BANCODEDADOS.LENGHT*/[0,1,2,3,4].map((index)=>(
-                                <Card key={index} cardIndex={index}/>
+                            {produto.map((produto, index)=>(
+                                <Card key={index} produto={produto}/>
                             ))}
 
                             </div>

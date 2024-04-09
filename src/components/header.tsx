@@ -7,6 +7,9 @@ import { useEffect, useState } from "react"
 import Cookies from 'js-cookie';
 import { jwtDecode } from "jwt-decode"
     
+interface JwtPayload{
+    username: string
+}
 
 
 export function Header(){
@@ -29,7 +32,7 @@ export function Header(){
       
         if (token) {
             try {
-                const decoded = jwtDecode(token);
+                const decoded: JwtPayload = jwtDecode(token);
                 setUsername(decoded.username)
                 console.log(decoded);
                 console.log(username)

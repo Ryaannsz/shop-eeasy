@@ -1,39 +1,49 @@
 import Image from "next/image"
 import { FaRegStar } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import card1 from "/public/card1.svg"
 import card2 from "/public/card2.svg"
 import card3 from "/public/card3.svg"
 import card4 from "/public/card4.svg"
 import card5 from "/public/card5.svg"
 
-export function Card({cardIndex}){
+interface produto{
+  produtosid: number
+  nome: string
+  preco: string
+  descricao: string
+  img: string
+}
 
- 
+export function Card({produto}: {produto: produto}){
 
+  const [currentProduto, setCurrentProduto] = useState(produto)
+
+    useEffect(()=>{
+      setCurrentProduto(produto)
+    },[produto])
   
 
 
 
-    const arrayImg=[card1, card2,card3,card4,card5]
-
-    const imgIndex = cardIndex < arrayImg.length ? cardIndex:0
+ 
 
 return(
 <div className="bg-white rounded-lg shadow-lg p-3 relative hover:shadow-lg transform hover:scale-105 transition duration-300 select-none">
 
     <div>
      
-    <Image src={arrayImg[cardIndex]} alt="imgProduct" />
+    <Image src={currentProduto.img} width={535} height={300} alt="imgProduct" />
      
     </div>
 
     <div className="flex justify-between gap-3 my-3">
         <div>
-        <p className="text-black font-bold">TITULO PRODUTO</p>
-        <p className="text-gray-600">Descrição</p>
+        <p className="text-black font-bold">{currentProduto.nome}</p>
+        <p className="text-gray-600">{currentProduto.descricao}</p>
         </div>
         <div className="flex flex-col items-end">
-        <strong className="text-violet-600">1200R$</strong>
+        <strong className="text-violet-600">{currentProduto.preco}R$</strong>
         <a className="text-gray-400">175R$</a>
         </div>
         

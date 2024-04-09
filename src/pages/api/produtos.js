@@ -47,7 +47,9 @@ export default async function produtos(req, res){
       }
       inserirProdutos("Porta de madeira", 157, "Uma porta de madeira qualquer", "/card1.svg")
       inserirProdutos("Abacate de madeira", 1000, "Um abacate feito de madeira", "/card2.svg")
-      inserirProdutos("Mouse Gamer", 500, "Um mouse para gamers!", "/card3.svg")
+      inserirProdutos("Violino de avental", 10421, "Violino especifico feito com detalhes de lã de avental", "/card3.svg")
+      inserirProdutos("Teclado Gamer RGB", 799, "Teclado foda para gamers!", "/card4.svg")
+      inserirProdutos("Aviaozinho de Papel", 250, "Tem nem o que falar aqui", "/card5.svg")
 
    // INSERINDO PRODUTOS HARD CODE   
 
