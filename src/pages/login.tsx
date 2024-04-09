@@ -70,7 +70,7 @@ export default function Login(){
         Cookies.set('token', token,{expires: 1})
 
         console.log("Requisição bem sucedida")
-        toast.success("Cadastro realizado com sucesso!", {
+        toast.success("Login realizado com sucesso!", {
           theme: 'colored',
           autoClose: 2000
         })

@@ -13,7 +13,7 @@ const config: Config = {
         'blue-hover' : '#2F4EAA'
       },
       maxWidth: {
-        grid: '77.5 rem'
+        grid: '90rem'
       }
     },
   },
