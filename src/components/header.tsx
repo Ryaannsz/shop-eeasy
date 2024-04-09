@@ -51,13 +51,13 @@ export function Header(){
                     className="flex mr-20"
                 />
                 <div className="flex items-center gap-8">
-                    <nav className="hidden md:flex">
+                    <nav className="hidden md:flex items-baseline">
                         <Link href="/inicio" className="px-3 py-1 text-white text-sm font-semibold hover:text-gray-300">Inicio</Link>
                         <Link href="#" className="px-3 py-1 text-white text-sm font-semibold hover:text-gray-300">Contato</Link>
                         {username ?(
-                            <div>
-                            <a className="text-white font-bold bg-gradient-to-tr from-gray-900 to-gray-800 px-4 py-2 rounded-full">Seja bem-vindo, {username}!</a>
-                            <button onClick={logout} className="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none " type="button">
+                            <div className="mx-4">
+                            <a className="text-white ">Seja bem-vindo, {username}!</a>
+                            <button onClick={logout} className="mx-2 select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none " type="button">
                             <a>Logout</a>
                             </button>
                             </div>
