@@ -3,9 +3,7 @@ import dbconnection from "@/db"
 
 
 export default async function getUniqueProduto(req, res) {
-   
     const { id } = req.query
-    
     try {   
         const query = `SELECT * FROM produtos WHERE produtosid=?`
         const [data] = await dbconnection.execute(query, [id])

@@ -123,49 +123,49 @@ export default function Login(){
         {isLogin ? (
           <>
             <h1 className="text-2xl font-bold mb-4">Login</h1>
-            <form>
+            <form onSubmit={postLogin}>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Usuario</label>
-                <input value={loginUsername} onChange={(e) => setLoginUsername(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text" />
+                <input value={loginUsername} onChange={(e) => setLoginUsername(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text" required/>
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Senha</label>
-                <input value={loginSenha} onChange={(e) => setLoginSenha(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="password" />
+                <input value={loginSenha} onChange={(e) => setLoginSenha(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="password" required/>
               </div>
-              <button onClick={postLogin} className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" type="submit">Login</button>
+              <button className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" type="submit">Login</button>
             </form>
             <p className="mt-4 text-gray-700">Não tem uma conta? crie uma já! <button className="text-blue-500 hover:underline focus:outline-none" onClick={handleToggle}>Cadastre-se!</button></p>
           </>
         ) : (
           <>
             <h1 className="text-2xl font-bold mb-4">Cadastro</h1>
-            <form>
+            <form onSubmit={postCadastro}>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Usuario</label>
-                <input value={cadastroUsername} onChange={(e) => setCadastroUsername(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text"/>
+                <input value={cadastroUsername} onChange={(e) => setCadastroUsername(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text" required />
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Senha</label>
-                <input value={cadastroSenha} onChange={(e) => setCadastroSenha(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="password" />
+                <input value={cadastroSenha} onChange={(e) => setCadastroSenha(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="password" required/>
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" >E-mail</label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text"/>
+                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text" required/>
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">CEP</label>
-                <input value={cep} onChange={(e) => setCep(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text"/>
+                <input value={cep} onChange={(e) => setCep(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text" required/>
                 <button onClick={complementoEndereco} className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" type="submit">Encontrar CEP</button>
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" >Endereco</label>
-                <input value={endereco} onChange={(e) => setEndereco(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text"/>
+                <input value={endereco} onChange={(e) => setEndereco(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text" required/>
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Bairro</label>
-                <input value={bairro} onChange={(e) => setBairro(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text"/>
+                <input value={bairro} onChange={(e) => setBairro(e.target.value)} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" type="text" required/>
               </div>
-              <button onClick={postCadastro} className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" type="submit">Cadastre-se</button>
+              <button className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" type="submit">Cadastre-se</button>
             </form>
             <p className="mt-4 text-gray-700">Já tem uma conta? Faça seu login! <button className="text-blue-500 hover:underline focus:outline-none" onClick={handleToggle}>Login</button></p>
           </>

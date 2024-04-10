@@ -34,8 +34,6 @@ export function Header(){
             try {
                 const decoded: JwtPayload = jwtDecode(token);
                 setUsername(decoded.username)
-                console.log(decoded);
-                console.log(username)
             } catch (error) {
                 console.error('Erro ao decodificar o token:', error);
             }
@@ -56,7 +54,7 @@ export function Header(){
                 <div className="flex items-center gap-8">
                     <nav className="hidden md:flex items-baseline">
                         <Link href="/inicio" className="px-3 py-1 text-white text-sm font-semibold hover:text-gray-300">Inicio</Link>
-                        <Link href="#" className="px-3 py-1 text-white text-sm font-semibold hover:text-gray-300">Contato</Link>
+                        <Link href="/contato" className="px-3 py-1 text-white text-sm font-semibold hover:text-gray-300">Contato</Link>
                         {username ?(
                             <div className="mx-4">
                             <a className="text-white ">Seja bem-vindo, {username}!</a>
