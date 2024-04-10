@@ -11,13 +11,22 @@ import  headerTres from "/public/headerTres.svg"
 import  headerQuatro from "/public/headerQuatro.svg"
 import { GridContainer } from "@/components/grid";
 import { Card } from "../components/cardproduct"
+import Modal from "@/components/modal";
 
 
+interface produto{
+    produtosid: string
+    nome: string
+    preco: string
+    descricao: string
+    img: string
+  }
 
 export default function Inicio(){
 
     const [produto, setProduto]=useState([])
-    //fetch
+
+    //fetch getAllProdutos
 
     useEffect(()=>{
 
@@ -39,6 +48,35 @@ export default function Inicio(){
     },[])
     
 
+    //modal
+    const [modalOpen, setModalOpen] = useState(false);
+    const [uniqueProduto, setUniqueProduto] = useState<produto | null>(null)
+
+    const handleOpenModal = async (id: string) => {
+        setModalOpen(true)
+       
+        try {
+            const response = await fetch(`/api/${id}`)
+            if(!response.ok){
+                throw new Error('Erro ao selecionar o produto desejado!')
+                return false
+            }else{          
+                const [data] = await response.json()
+                setUniqueProduto(data)    
+                
+                return true
+            }
+
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+
+    };
+
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
 
     const imgSlides = [
         {
@@ -55,7 +93,11 @@ export default function Inicio(){
         }
     ]
 
-    const cardArray = Array.from({ length: 4 }, (_, index) => index + 1);
+    //fetch uniqueProduto
+
+    
+
+
     //CARROSEL IMAGENS
     const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -109,8 +151,23 @@ export default function Inicio(){
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 
                             {produto.map((produto, index)=>(
-                                <Card key={index} produto={produto}/>
+                                <Card openModal={(e) =>{handleOpenModal(e.target.id)}} key={index} produto={produto}/>
                             ))}
+                            {uniqueProduto &&(
+                            <Modal isOpen={modalOpen} onClose={handleCloseModal}>
+                                <div className="flex flex-col items-center">
+                                    <Image src={uniqueProduto.img} width={535} height={300} alt="img card test" />
+                                    <div className="text-center mt-4">
+                                    <p className="text-black font-bold">{uniqueProduto.nome}</p>
+                                    <p className="text-gray-600">{uniqueProduto.descricao}</p>
+                                    
+                                    <strong className="text-violet-600">{uniqueProduto.preco}R$</strong>
+                                 </div>
+                                </div>
+                            </Modal>
+                        )}
+                            
+                              
 
                             </div>
                         
