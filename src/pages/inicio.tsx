@@ -166,20 +166,12 @@ export default function Inicio(){
                                 </div>
                             </Modal>
                         )}
-                            
-                              
-
                             </div>
-                        
-
                         </div>
-
-
                     </section>
                     <br></br>
               </GridContainer>  
             <Footer />
-        </div>
-        
+        </div> 
     )
 }

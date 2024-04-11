@@ -34,8 +34,11 @@ export default function ContactPage(){
         <div className="flex flex-col min-h-screen">
         <Header />
             <GridContainer>
+                
         <br></br>
         <form action="https://api.staticforms.xyz/submit" method="post" className="max-w-md mx-auto">
+            <h1 className="text-black font-bold text-4xl">Entre em contato</h1>
+            <br></br>
     <input type="hidden" name="accessKey" value="42b13411-075d-40dc-b6de-e7f79d36cad1" className="hidden"/> 
     {name ?(
         <div className="mb-4">
