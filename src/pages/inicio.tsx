@@ -14,6 +14,7 @@ import { Card } from "../components/cardproduct"
 import Modal from "@/components/modal";
 
 
+
 interface produto{
     produtosid: string
     nome: string
@@ -106,14 +107,13 @@ export default function Inicio(){
     }
 
     const antSlide = () => {
-        const isFirst = currentIndex === 0
-        const newIndex = isFirst ? imgSlides.length-1 : currentIndex
-        setCurrentIndex(newIndex)
+        const newIndex = currentIndex === 0 ? imgSlides.length - 1 : currentIndex - 1
+        setCurrentIndex(newIndex)   
     }
 
     const proxSlide = () => {
         const isLast = currentIndex === imgSlides.length-1
-        const newIndex = isLast ? 0 : currentIndex + 1;
+        const newIndex = isLast ? 0 : currentIndex + 1
         setCurrentIndex(newIndex)
     } 
     //CARROSEL IMAGENS
@@ -128,11 +128,11 @@ export default function Inicio(){
               
 
               <div className="absolute top-[50%] -translate-x-0 translate-y-[50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-                <GoArrowLeft onClick={antSlide} size={30}/>
+                <GoArrowLeft onClick={()=>antSlide()} size={30}/>
                  </div>
 
               <div className="absolute top-[50%] -translate-x-0 translate-y-[50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-                <GoArrowRight onClick={proxSlide} size={30}/>
+                <GoArrowRight onClick={()=>proxSlide()} size={30}/>
                  </div>
 
                  <div className="flex top-4 justify-center py-2">

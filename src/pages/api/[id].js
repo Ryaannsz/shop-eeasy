@@ -10,7 +10,6 @@ export default async function getUniqueProduto(req, res) {
         res.send(data)
         return res.status(200).json({success: true, message: "Produto selecionado com sucesso!", data:data})
     } catch (error) {
-        console.log("Erro: "+error)
        return res.status(500).json({success: false, message: "Erro ao selecionar produtos: "+error})
     }  
 }
