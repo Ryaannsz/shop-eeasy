@@ -60,7 +60,7 @@ const dbconnection = await mysql.createConnection({
 ```
 
 
-em "password", você substituirá as aspas pela senha do seu banco.
+em "password", você substituirá os asteriscos(*) pela senha do seu banco.
 
 
 # Compilar e inicializar o projeto
